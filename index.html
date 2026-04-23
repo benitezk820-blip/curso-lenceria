@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confección de Lencería Pro | Crea tu Marca desde Casa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        .bg-lenceria { background-color: #fff5f5; }
+        .accent-pink { color: #db2777; }
+        .bg-accent-pink { background-color: #db2777; }
+        
+        .video-container { position: relative; cursor: pointer; }
+        
+        .carousel-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+        .carousel-container::-webkit-scrollbar { display: none; }
+        .carousel-item {
+            flex: 0 0 100%;
+            scroll-snap-align: start;
+        }
+        @media (min-width: 768px) {
+            .carousel-item { flex: 0 0 33.333%; }
+        }
+
+        /* Mejoras de Conversión */
+        #mobile-cta { display: none; }
+        @media (max-width: 768px) {
+            #mobile-cta { display: block; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(-100%); opacity: 0; }
+        }
+        .notification-in { animation: slideIn 0.5s ease forwards; }
+        .notification-out { animation: slideOut 0.5s ease forwards; }
+    </style>
+</head>
+<body id="inicio" class="bg-white text-slate-800 pb-20 md:pb-0">
+
+    <div id="social-proof" class="fixed bottom-24 left-4 z-[60] bg-white border border-pink-100 p-4 rounded-2xl shadow-2xl flex items-center gap-4 max-w-xs hidden">
+        <div class="w-12 h-12 bg-pink-100 rounded-full flex-shrink-0 flex items-center justify-center text-xl">✨</div>
+        <div>
+            <p id="proof-text" class="text-sm font-medium text-slate-800"></p>
+            <p class="text-xs text-pink-500 font-bold">¡Inscripción confirmada!</p>
+        </div>
+    </div>
+
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-sm border-b border-pink-100 top-0">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 h-20 flex items-center justify-between gap-3">
+            <a href="#inicio" class="text-xl md:text-2xl font-bold tracking-tighter accent-pink whitespace-nowrap">LENCERÍA<span class="text-slate-900">EXCLUSIVA</span></a>
+            
+            <div class="flex items-center gap-4 md:gap-8">
+                <div class="hidden sm:flex items-center gap-4 border-r border-slate-200 pr-6">
+                    <div class="text-right leading-none">
+                        <p class="text-[15px] font-bold text-pink-600 uppercase tracking-widest mb-1">La oferta termina en:</p>
+                        <span id="nav-timer" class="text-xl font-mono font-bold text-slate-900 tabular-nums">--:--:--</span>
+                    </div>
+                    <div class="flex flex-col items-center leading-none">
+                        <span class="text-slate-400 line-through text-xs">$49.99</span>
+                        <span class="text-2xl md:text-3xl font-black text-slate-900 tracking-tighter">$25<small class="text-xs font-bold text-pink-500 ml-0.5">USD</small></span>
+                    </div>
+                </div>
+                <a href="https://go.hotmart.com/P90706260O?ap=4616&offDiscount=031016#ID" class="bg-accent-pink text-white px-6 md:px-10 py-3.5 rounded-full font-bold hover:bg-pink-700 transition shadow-lg shadow-pink-200 text-sm md:text-base whitespace-nowrap uppercase tracking-wide">¡QUIERO EMPEZAR!</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-40 pb-20 bg-lenceria">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <span class="bg-pink-200 text-pink-800 px-4 py-1 rounded-full text-xs font-bold uppercase">Inscripciones Abiertas</span>
+                <h1 class="text-5xl md:text-7xl font-bold mt-6 leading-tight text-slate-900">
+                    Crea Lencería Profesional <span class="accent-pink">desde Casa</span>
+                </h1>
+                <p class="mt-6 text-xl text-slate-600 leading-relaxed">
+                    Aprende el arte de la lencería fina paso a paso. Diseña, corta y confecciona prendas exclusivas de alta calidad utilizando solo tu máquina hogareña básica.
+                </p>
+                <div class="mt-10">
+                    <a href="#comprar" class="inline-block bg-accent-pink text-white px-10 py-5 rounded-2xl font-bold text-xl hover:scale-105 transition shadow-xl shadow-pink-200">¡Quiero Aprender! →</a>
+                    <p class="mt-4 text-sm text-pink-600 font-semibold">✨ Acceso inmediato de por vida y Certificación incluida</p>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="video-container rounded-3xl shadow-2xl border-8 border-white overflow-hidden bg-black aspect-[9/16]">
+                    <video id="heroVideo" class="w-full h-full object-cover" controls playsinline preload="auto">
+                        <source src="video portada.mp4" type="video/mp4">
+                        Tu navegador no soporta la reproducción de video.
+                    </video>
+                </div>
+                <div class="absolute -bottom-10 -left-10 bg-white p-6 rounded-2xl shadow-xl border border-pink-50 z-30">
+                    <p class="text-3xl font-bold accent-pink">50% OFF</p>
+                    <p class="text-sm font-bold">Oferta única de lanzamiento</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-slate-900">Este curso es para ti si:</h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-12">
+            <div class="text-center">
+                <div class="text-4xl mb-4">🏠</div>
+                <h3 class="text-xl font-bold mb-2">Emprende desde casa</h3>
+                <p class="text-slate-500">Buscas una habilidad con baja inversión inicial y alta demanda para generar ingresos propios.</p>
+            </div>
+            <div class="text-center">
+                <div class="text-4xl mb-4">🧵</div>
+                <h3 class="text-xl font-bold mb-2">Costura a tu medida</h3>
+                <p class="text-slate-500">Deseas confeccionar tu propia lencería con calce perfecto adaptado a tu cuerpo real.</p>
+            </div>
+            <div class="text-center">
+                <div class="text-4xl mb-4">💎</div>
+                <h3 class="text-xl font-bold mb-2">Crea tu propia marca</h3>
+                <p class="text-slate-500">Sueñas con lanzar una línea exclusiva de ropa íntima que se diferencie en el mercado actual.</p>
+            </div>
+            <div class="text-center">
+                <div class="text-4xl mb-4">⚡</div>
+                <h3 class="text-xl font-bold mb-2">Poco tiempo disponible</h3>
+                <p class="text-slate-500">Aprendes a tu propio ritmo, sin horarios fijos y desde cualquier dispositivo electrónico.</p>
+            </div>
+            <div class="text-center">
+                <div class="text-4xl mb-4">👗</div>
+                <h3 class="text-xl font-bold mb-2">Amplía tus conocimientos</h3>
+                <p class="text-slate-500">Eres costurera y quieres especializarte en el rubro más rentable de la industria textil.</p>
+            </div>
+            <div class="text-center">
+                <div class="text-4xl mb-4">💼</div>
+                <h3 class="text-xl font-bold mb-2">Habilidad Sostenible</h3>
+                <p class="text-slate-500">La lencería es una necesidad básica; aprender a crearla te garantiza un mercado permanente.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-50 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold text-slate-900 italic mb-12">Resultados de nuestras alumnas</h2>
+            <div class="relative group">
+                <div id="carousel" class="carousel-container gap-6 py-4">
+                    <div class="carousel-item"><img src="testimonio1.jpg" alt="Alumna trabajo 1" class="w-full h-auto rounded-2xl shadow-md border"></div>
+                    <div class="carousel-item"><img src="testimonio2.jpg" alt="Alumna trabajo 2" class="w-full h-auto rounded-2xl shadow-md border"></div>
+                    <div class="carousel-item"><img src="testimonio3.jpg" alt="Alumna trabajo 3" class="w-full h-auto rounded-2xl shadow-md border"></div>
+                </div>
+                <button onclick="document.getElementById('carousel').scrollBy({left: -300, behavior: 'smooth'})" class="absolute left-0 top-1/2 -translate-y-1/2 bg-white/80 p-3 rounded-full shadow-lg border border-pink-100 hidden md:block">
+                    <svg class="w-6 h-6 accent-pink" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                </button>
+                <button onclick="document.getElementById('carousel').scrollBy({left: 300, behavior: 'smooth'})" class="absolute right-0 top-1/2 -translate-y-1/2 bg-white/80 p-3 rounded-full shadow-lg border border-pink-100 hidden md:block">
+                    <svg class="w-6 h-6 accent-pink" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 text-slate-900">Contenido del Programa</h2>
+            <div class="space-y-6">
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-pink-100">
+                    <h3 class="font-bold text-pink-600 uppercase text-xs tracking-widest mb-2">Módulo 1</h3>
+                    <h4 class="text-2xl font-bold mb-4 text-slate-800">Introducción y Bases del Negocio</h4>
+                    <ul class="grid md:grid-cols-2 gap-3 text-slate-600">
+                        <li>• Toma de medidas y reconocimiento de cuerpo</li>
+                        <li>• Textiles y avíos: ¿qué comprar y dónde?</li>
+                        <li>• Puesta a punto de máquina hogareña</li>
+                        <li>• Tipos de costuras y terminaciones elásticas</li>
+                        <li>• Mantenimiento preventivo de máquinas</li>
+                        <li>• 5 razones de rentabilidad en ropa íntima</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-pink-100">
+                    <h3 class="font-bold text-pink-600 uppercase text-xs tracking-widest mb-2">Módulo 2</h3>
+                    <h4 class="text-2xl font-bold mb-4 text-slate-800">Confección de Sostenes y Corpiños</h4>
+                    <ul class="grid md:grid-cols-2 gap-3 text-slate-600">
+                        <li>• Trazado y confección de Corpiño Triángulo</li>
+                        <li>• Corpiño con coletta paso a paso</li>
+                        <li>• Sostén con aro y radio de mama</li>
+                        <li>• Métodos de elastizado (sisa, escote y cintura)</li>
+                        <li>• Colocación de cinta vaina y avíos</li>
+                        <li>• Moldería descargable en 9 talles</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-pink-100">
+                    <h3 class="font-bold text-pink-600 uppercase text-xs tracking-widest mb-2">Módulo 3</h3>
+                    <h4 class="text-2xl font-bold mb-4 text-slate-800">Bragas, Bombachas y Complementos</h4>
+                    <ul class="grid md:grid-cols-2 gap-3 text-slate-600">
+                        <li>• Trazado base y método de reducción</li>
+                        <li>• Modelos Vedettina, Colaless y Culotte</li>
+                        <li>• Diseños regulables y ajustes de calce</li>
+                        <li>• Trazado y confección de Portaligas</li>
+                        <li>• Línea masculina: Bóxer y Slip (Niños y Adultos)</li>
+                        <li>• Camisetas, Top Deportivo y Blusas</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-pink-100">
+                    <h3 class="font-bold text-pink-600 uppercase text-xs tracking-widest mb-2">Módulo 4</h3>
+                    <h4 class="text-2xl font-bold mb-4 text-slate-800">Emprendimiento y Marketing</h4>
+                    <ul class="grid md:grid-cols-2 gap-3 text-slate-600">
+                        <li>• Producción en serie desde casa</li>
+                        <li>• Cómo poner precio a tus productos</li>
+                        <li>• Fotografía de productos que venden</li>
+                        <li>• Creación de Instagram de Empresa</li>
+                        <li>• Estrategias de lanzamiento y métricas</li>
+                        <li>• Obtención de Certificado Final</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="comprar" class="py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="bg-slate-900 rounded-[3rem] p-8 md:p-16 text-center text-white relative overflow-hidden shadow-2xl border-4 border-pink-500/20">
+                <div class="relative z-10">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4 italic">Únete ahora y ahorra el 50%</h2>
+                    <p class="text-pink-300 text-lg mb-10 uppercase tracking-widest font-bold">Programa Completo + 3 Bonos Exclusivos</p>
+                    
+                    <div class="flex flex-col md:flex-row justify-center items-center gap-8 mb-12 bg-white/5 py-8 rounded-3xl border border-white/10">
+                        <div class="flex flex-col items-center">
+                            <span class="text-slate-400 line-through text-2xl mb-1">$49.99</span>
+                            <span class="text-7xl font-black text-white tracking-tighter">$25<small class="text-2xl font-bold text-pink-400 ml-2">USD</small></span>
+                        </div>
+                        
+                        <div class="hidden md:block w-px h-20 bg-white/20"></div>
+
+                        <div class="text-center md:text-left">
+                            <p class="text-pink-400 text-xs font-black uppercase tracking-[0.2em] mb-2">La oferta expira en:</p>
+                            <span id="section-timer" class="text-5xl font-mono font-bold text-white tabular-nums">--:--:--</span>
+                        </div>
+                    </div>
+
+                    <div class="text-left bg-slate-800/50 p-6 rounded-2xl mb-10 border border-slate-700 max-w-xl mx-auto">
+                        <p class="mb-2">✅ <strong>Bono 1:</strong> Pack de +50 Moldes de Bikinis y Lencería</p>
+                        <p class="mb-2">✅ <strong>Bono 2:</strong> Guía: Cómo vender ropa interior en redes</p>
+                        <p>✅ <strong>Bono 3:</strong> Acceso prioritario a futuras actualizaciones</p>
+                    </div>
+                    
+                    <a href="https://go.hotmart.com/P90706260O?ap=4616&offDiscount=031016#ID" class="block w-full max-w-xl mx-auto bg-accent-pink py-6 rounded-2xl font-bold text-2xl hover:bg-pink-700 transition transform hover:-translate-y-1 shadow-xl shadow-pink-900/40">¡ADQUIRIR EL CURSO AHORA!</a>
+                    <p class="mt-6 text-slate-400 text-sm italic">Compra 100% segura procesada por Hotmart®</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 max-w-3xl mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center mb-12">Preguntas Frecuentes</h2>
+        <div class="space-y-4">
+            <details class="p-6 bg-pink-50 rounded-xl cursor-pointer">
+                <summary class="font-bold">No sé coser, ¿puedo hacerlo?</summary>
+                <p class="mt-4 text-slate-600">Sí. El programa está diseñado desde cero. Aprenderás desde conceptos básicos hasta técnicas avanzadas progresivamente.</p>
+            </details>
+            <details class="p-6 bg-pink-50 rounded-xl cursor-pointer">
+                <summary class="font-bold">¿Necesito una máquina profesional?</summary>
+                <p class="mt-4 text-slate-600">No es necesario. Puedes confeccionar toda la lencería del curso utilizando solo tu máquina de coser doméstica u hogareña.</p>
+            </details>
+            <details class="p-6 bg-pink-50 rounded-xl cursor-pointer">
+                <summary class="font-bold">¿Cuántos pagos son?</summary>
+                <p class="mt-4 text-slate-600">Es un pago único con acceso de por vida. No hay mensualidades ni cargos adicionales por actualizaciones futuras.</p>
+            </details>
+            <details class="p-6 bg-pink-50 rounded-xl cursor-pointer">
+                <summary class="font-bold">¿Cuándo empiezo y cómo accedo?</summary>
+                <p class="mt-4 text-slate-600">El inicio es inmediato. Al realizar el pago, recibirás automáticamente un mail con tu usuario y contraseña para entrar a la plataforma.</p>
+            </details>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-pink-100 bg-lenceria text-center">
+        <a href="#inicio" class="text-xl font-bold tracking-tighter accent-pink block mb-4 italic">LENCERÍA EXCLUSIVA</a>
+        <p class="text-slate-500 text-sm mb-4">Copyright © 2026 Digitalab Learning</p>
+    </footer>
+
+    <a href="https://wa.link/adk0hs" class="fixed bottom-24 right-8 bg-green-500 p-4 rounded-full shadow-2xl hover:scale-110 transition z-50 md:bottom-8">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="w-8 h-8" alt="WhatsApp">
+    </a>
+
+    <div id="mobile-cta" class="fixed bottom-0 left-0 w-full p-4 bg-white/90 backdrop-blur-md border-t border-pink-100 z-[70] md:hidden">
+        <a href="https://go.hotmart.com/P90706260O?ap=4616&offDiscount=031016#ID" class="block w-full bg-accent-pink text-white text-center py-4 rounded-xl font-bold shadow-lg animate-pulse">¡INSCRIBIRME AL 50% OFF!</a>
+    </div>
+
+    <script>
+        // 1. Manejo de Video
+        const video = document.getElementById('heroVideo');
+        video.addEventListener('loadedmetadata', () => { video.currentTime = video.duration; });
+        video.addEventListener('ended', () => { video.currentTime = 0; });
+
+        // 2. Contador regresivo hasta la medianoche local
+        (function () {
+            const navTimer = document.getElementById('nav-timer');
+            const sectionTimer = document.getElementById('section-timer');
+            const pad = (n) => String(n).padStart(2, '0');
+            
+            function tick() {
+                const now = new Date();
+                const end = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0, 0);
+                let diff = Math.max(0, end - now);
+                const hours = Math.floor(diff / 3600000);
+                const minutes = Math.floor((diff % 3600000) / 60000);
+                const seconds = Math.floor((diff % 60000) / 1000);
+                
+                const timeString = `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+                
+                if (navTimer) navTimer.textContent = timeString;
+                if (sectionTimer) sectionTimer.textContent = timeString;
+            }
+            tick();
+            setInterval(tick, 1000);
+        })();
+
+        // 3. Social Proof
+        const buyers = [
+            { name: "Mariana", city: "Buenos Aires" },
+            { name: "Carla", city: "Santiago de Chile" },
+            { name: "Lucía", city: "Ciudad de México" },
+            { name: "Andrea", city: "Bogotá" },
+            { name: "Valentina", city: "Lima" },
+            { name: "Gabriela", city: "Montevideo" },
+            { name: "Sofía", city: "Quito" },
+            { name: "Fernanda", city: "Asunción" },
+            { name: "Isabella", city: "Brasilia" },
+            { name: "Daniela", city: "San José" }
+        ];
+
+        const proofElement = document.getElementById('social-proof');
+        const proofText = document.getElementById('proof-text');
+        let index = 0;
+
+        function showNotification() {
+            const buyer = buyers[index];
+            proofText.innerHTML = `<strong>${buyer.name}</strong> desde <strong>${buyer.city}</strong>`;
+            proofElement.classList.remove('hidden', 'notification-out');
+            proofElement.classList.add('notification-in');
+            setTimeout(() => {
+                proofElement.classList.remove('notification-in');
+                proofElement.classList.add('notification-out');
+                index = (index + 1) % buyers.length;
+            }, 5000);
+        }
+        setInterval(showNotification, 12000);
+        setTimeout(showNotification, 3000);
+    </script>
+</body>
+</html>
